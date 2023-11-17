@@ -14,6 +14,26 @@ td {
   background-color: red;
 }
 
+.minPath {
+  border: solid 2px blue;
+}
+
 .visited {
   background-color: rgb(255, 206, 206);
+}
+
+.food {
+  background-color: lightsalmon;
+}
+
+.open {
+  background-color: white;
+}
+
+.home {
+  background-color: lightgreen;
+}
+
+.dog {
+  background-color: rgb(73, 73, 73);
 }
