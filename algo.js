@@ -1,4 +1,4 @@
-const delayInMs = 50;
+const delayInMs = 200;
 
 let visitedCells = [];
 let iterations = 0;
@@ -96,6 +96,7 @@ async function generatePaths(cellToCheck, priorVisitedCells, priorFoodFound, mat
 
     let cellToVisit = undefined;
     while(cellsToVisitQueue.length > 0) {
+      switchHtmlToPawPrint(cy, cx);
       cellVisited = true;
       updateHtmlQueueList(cellsToVisitQueue);
       cellToVisit = cellsToVisitQueue.pop();

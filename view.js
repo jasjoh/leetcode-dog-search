@@ -19,10 +19,10 @@ function createHtmlBoard() {
           gameCell.className = "food";
           break;
         case 'H':
-          gameCell.className = "home";
+          gameCell.className = "end";
           break;
         case 'C':
-          gameCell.className = "dog";
+          gameCell.className = "start";
           break;
       }
       gameRow.append(gameCell);
@@ -32,14 +32,19 @@ function createHtmlBoard() {
 }
 
 function placePieceInHtml(y, x){
-  console.log("placing piece in html at yx:", y, x);
-  // create the game piece and add classes to support styling
   const gamePiece = document.createElement("div");
   gamePiece.classList.add("gamePiece");
+  gamePiece.classList.add("dog");
 
-  // select the game cell where the piece will be placed and place it
   const gameCell = document.getElementById(`game-cell-${y}-${x}`);
   gameCell.append(gamePiece);
+}
+
+function switchHtmlToPawPrint(y, x){
+  const gameCell = document.getElementById(`game-cell-${y}-${x}`);
+  const gamePiece = gameCell.getElementsByTagName("div")[0];
+  gamePiece.classList.remove("dog");
+  gamePiece.classList.add("paw-print");
 }
 
 function removePieceFromHtml(y, x) {

@@ -11,7 +11,6 @@ td {
   width: 80%;
   height: 80%;
   border-radius: 50%;
-  background-color: red;
 }
 
 .minPath {
@@ -23,17 +22,35 @@ td {
 }
 
 .food {
-  background-color: lightsalmon;
+  background-image: url('static/wiki.dog.food.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .open {
   background-color: white;
 }
 
-.home {
-  background-color: lightgreen;
+.end {
+  background-image: url('static/wiki.dog.house.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.start {
+  background-image: url('static/wiki.lawn.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .dog {
-  background-color: rgb(73, 73, 73);
+  background-image: url('static/wiki.golden.puppy.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.paw-print {
+  background-image: url('static/wiki.paw.print.png');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
