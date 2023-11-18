@@ -1,4 +1,4 @@
-const delayInMs = 200;
+const delayInMs = 20;
 
 let visitedCells = [];
 let iterations = 0;
@@ -117,7 +117,7 @@ async function generatePaths(cellToCheck, priorVisitedCells, priorFoodFound, mat
       setMaxPathLength(maxPathLength);
     }
 
-    if (foodFound === 3 && reachedHome) {
+    if (foodFound === foodCount && reachedHome) {
       if (minPathWithMaxFood !== Math.min(minPathWithMaxFood, pathLength)) {
         minPathWithMaxFood = pathLength;
         setMinPathWithMaxFood(minPathWithMaxFood);

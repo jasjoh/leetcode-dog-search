@@ -6,6 +6,9 @@ function SearchingChallenge(matrix) {
       if (matrix[i][j] === 'C') {
         dogCoords = [i, j];
       }
+      if (matrix[i][j] === 'F') {
+        foodCount++;
+      }
     }
   }
 
