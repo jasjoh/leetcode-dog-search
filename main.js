@@ -1,5 +1,8 @@
+
+/** Parent function that accepts a matrix to path through */
 function SearchingChallenge(matrix) {
 
+  // find the starting location + count the amount of food needed
   let dogCoords = [];
   for (let i = 0; i <= 3; i++) {
     for (let j = 0; j <= 3; j++) {
@@ -12,7 +15,8 @@ function SearchingChallenge(matrix) {
     }
   }
 
-  let dogCell = new Cell(dogCoords, 'D');
+  // start the recursion
+  let dogCell = new Cell(dogCoords, 'D')
   generatePaths(dogCell, visitedCells, foodFound, matrix);
 
 }
