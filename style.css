@@ -1,3 +1,19 @@
+#description {
+  width: 400px;
+}
+#controls {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.controls-input {
+  width: 40px;
+}
+
+.controls-button {
+  display: block;
+}
+
 /* game board table styling */
 
 td {
@@ -54,3 +70,4 @@ td {
   background-size: cover;
   background-repeat: no-repeat;
 }
+

@@ -1,10 +1,6 @@
 /** All the logic associated with rendering the pathing / algo visualizer */
 
 
-
-const cellVisitedCountHtml = document.getElementById('cellVisitedCount');
-cellVisitedCountHtml.innerText = 1;
-
 /** Generates and renders the empty HTML board / grid */
 function createHtmlBoard() {
   // grab the DOM element where the board will live

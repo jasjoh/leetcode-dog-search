@@ -5,10 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dog Food Home Search Algo Visualizer</title>
   <link href="style.css" rel="stylesheet">
+  <script src="view.js"></script>
+  <script src="algo.js"></script>
+  <script src="main.js"></script>
 </head>
 <body>
+<div id="description">
+  <p class="description-p">
+    This simple web app was designed to help visualize a leet code challenge associated
+    with finding the shortest path in a matrix from one coord to another coord while
+    ensuring the path included one or more other coords. In this case, the story was that
+    a dog was trying to find its way home as quickly as possible while getting all the food
+    he could find along the way.
+  </p>
+  <p class="description-p">
+    You can adjust the speed (how much delay) is involved in the animation which
+    illustrates the path logic. Lower speeds mean the animation runs faster.
+  </p>
+  <p class="description-p">
+    Press the 'Run Search' button to start the pathing animation. The shortest
+    identified route will be represented by blue borders.
+  </p>
+</div>
 <div>
   <table id="grid"></table>
+</div>
+<div id="controls">
+  <form id="controls-form">
+  <label class="controls-label" for="speedInMs">Animation Speed in MS</label>
+  <input class="controls-input" type="text" id="speedInMs" name="speedInMs" placeholder="20">
+  <button class="controls-button" type="submit">Run Search</button>
+  </form>
 </div>
 <div id="cellVisitedCount"></div>
 <div id="maxPathLength"></div>
@@ -17,9 +44,5 @@
 <div id="minPathWithMaxFood"></div>
 <div id="queue"></div>
 <div id="visitedTracker"></div>
-<script src="globals.js"></script>
-<script src="view.js"></script>
-<script src="algo.js"></script>
-<script src="main.js"></script>
 </body>
 </html>

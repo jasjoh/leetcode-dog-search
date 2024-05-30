@@ -1,3 +1,12 @@
+const delayInMs = 20; // slower = easier to see path animation
+
+let visitedCells = []; // tracks visited cells so we don't revisit them
+let iterations = 0; // for preventing infinite loops / stack
+let maxPathLength = 0; // legacy testing tracker
+let cellVisitedCount = 0; // for displaying total cell visits
+let foodFound = 0; // keep track of found food
+let minPathWithMaxFood = undefined; // minimum good path leng
+
 class Cell {
   constructor(coords, type) {
     this.coords = coords;
@@ -14,27 +23,6 @@ function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-/** Parent function that accepts a matrix to path through */
-function searchingChallenge(matrix) {
-
-  // find the starting location + count the amount of food needed
-  let dogCoords = [];
-  for (let i = 0; i <= 3; i++) {
-    for (let j = 0; j <= 3; j++) {
-      if (matrix[i][j] === 'C') {
-        dogCoords = [i, j];
-      }
-      if (matrix[i][j] === 'F') {
-        foodCount++;
-      }
-    }
-  }
-
-  // start the recursion
-  let dogCell = new Cell(dogCoords, 'D')
-  generatePaths(dogCell, visitedCells, foodFound, matrix);
-
-}
 /**
  * The core recursive function that is used to generate paths
  * Accepts:
@@ -86,20 +74,22 @@ async function generatePaths(cellToCheck, priorVisitedCells, priorFoodFound, mat
 
   // HTML CALL
   setCellVisitedCount(++cellVisitedCount);
-  placePieceInHtml(cy, cx);
-  updatedHtmlVisited(visitedCells);
+  // placePieceInHtml(cy, cx);
+  // updatedHtmlVisited(visitedCells);
 
   // Delay as needed for watching algo visualization
   await delay(delayInMs);
 
-  // If we reached home, we don't need to keep pathing
-  if (!reachedHome) {
+  // If we have visited all cells, we don't need to go further
+  const maxVisitsAllowed = matrix[0].length * matrix.length;
+
+  // If we reached home or visited max cells, we don't need to keep pathing
+  if (!reachedHome && visitedCells.length <= maxVisitsAllowed) {
 
     // add up node if it exists and hasn't been visited
     if (
       matrix[cy-1] !== undefined &&
-      matrix[cy-1][cx] !== undefined &&
-      !visitedCells.includes(`${cy-1}${cx}`)
+      matrix[cy-1][cx] !== undefined // && !visitedCells.includes(`${cy-1}${cx}`)
     ) {
       let newCell = new Cell([cy-1, cx], matrix[cy-1][cx]);
       cellToCheck.up = newCell;
@@ -109,8 +99,7 @@ async function generatePaths(cellToCheck, priorVisitedCells, priorFoodFound, mat
     // add down node if it exists and hasn't been visited
     if (
       matrix[cy+1] !== undefined &&
-      matrix[cy+1][cx] !== undefined &&
-      !visitedCells.includes(`${cy+1}${cx}`)
+      matrix[cy+1][cx] !== undefined // && !visitedCells.includes(`${cy+1}${cx}`)
     ) {
       let newCell = new Cell([cy+1, cx], matrix[cy+1][cx]);
       cellToCheck.down = newCell;
@@ -119,8 +108,7 @@ async function generatePaths(cellToCheck, priorVisitedCells, priorFoodFound, mat
 
     // add left node if it exists and hasn't been visited
     if (
-      matrix[cy][cx-1] !== undefined &&
-      !visitedCells.includes(`${cy}${cx-1}`)
+      matrix[cy][cx-1] !== undefined // && !visitedCells.includes(`${cy}${cx-1}`)
     ) {
       let newCell = new Cell([cy, cx-1], matrix[cy][cx-1]);
       cellToCheck.left = newCell;
@@ -129,8 +117,7 @@ async function generatePaths(cellToCheck, priorVisitedCells, priorFoodFound, mat
 
     // add right node if it exists and hasn't been visited
     if (
-      matrix[cy][cx+1] !== undefined &&
-      !visitedCells.includes(`${cy}${cx+1}`)
+      matrix[cy][cx+1] !== undefined // && !visitedCells.includes(`${cy}${cx+1}`)
     ) {
       let newCell = new Cell([cy, cx+1], matrix[cy][cx+1]);
       cellToCheck.right = newCell;
@@ -139,7 +126,7 @@ async function generatePaths(cellToCheck, priorVisitedCells, priorFoodFound, mat
 
     let cellToVisit = undefined;
     while(cellsToVisitQueue.length > 0) {
-      switchHtmlToPawPrint(cy, cx);
+      // switchHtmlToPawPrint(cy, cx);
       cellVisited = true;
       updateHtmlQueueList(cellsToVisitQueue);
       cellToVisit = cellsToVisitQueue.pop();
